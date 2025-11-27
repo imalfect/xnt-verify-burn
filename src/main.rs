@@ -42,8 +42,7 @@ async fn main() {
 
     // index 4 announcement in this block is the burn one
     let announcement = announcements[4].clone();
-    let tti =
-        TransparentTransactionInfo::try_from_announcement(&announcement.into()).unwrap();
+    let tti = TransparentTransactionInfo::try_from_announcement(&announcement.into()).unwrap();
     println!(
         "Fetched the transaction, has {} outputs, checking",
         tti.outputs.len()
@@ -51,8 +50,13 @@ async fn main() {
     tti.outputs.iter().for_each(|output| {
         // check if lock script of that tx is the burn one
 
-        let output_native_currency_amount = output.utxo.get_native_currency_amount().ceil_num_whole_coins();
-        let utxo_in_block = block_tx_kernel.outputs.contains(&output.addition_record().into());
+        let output_native_currency_amount = output
+            .utxo
+            .get_native_currency_amount()
+            .ceil_num_whole_coins();
+        let utxo_in_block = block_tx_kernel
+            .outputs
+            .contains(&output.addition_record().into());
         if (!utxo_in_block) {
             println!("Output UTXO is not included in the block, transaction is invalid!");
             return;
@@ -61,7 +65,6 @@ async fn main() {
             println!(
                 "Found output with {:?} coins, this IS a burn output!",
                 output_native_currency_amount
-
             );
         } else {
             println!(
