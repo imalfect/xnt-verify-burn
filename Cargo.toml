@@ -1,0 +1,9 @@
+[package]
+name = "xnt-verify-burn"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+neptune-cash = { git = "https://github.com/Neptune-Crypto/neptune-core", version = "0.5.0" }
+neptune-rpc-client = { git = "https://github.com/Neptune-Crypto/neptune-core", version = "0.5.0" }
+tokio = { version = "1.48.0", features = ["rt", "rt-multi-thread", "macros"] }
